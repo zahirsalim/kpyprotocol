@@ -1,0 +1,1 @@
+from KProtocol import KurentoProtocol

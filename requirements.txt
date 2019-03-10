@@ -1,0 +1,4 @@
+jsonrpcclient[websockets]
+asyncio
+websockets
+tornado

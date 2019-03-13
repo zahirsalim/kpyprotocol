@@ -23,16 +23,17 @@ class KurentoProtocol(object):
     '''
     Encapsulates the jsonrpclient method to facilitate Kurento RPC
     '''
+   
     async def __aenter__(self):
-        self._conn = asyncio.connect("ws://localhost:8888/kurento")
+        self._conn = websockets.connect("ws://localhost:8888/kurento")
         self.websocket = await self._conn.__aenter__()
         return self
 
     async def __aexit__(self, *args, **kwargs):
         await self._conn.__aexit__(*args, **kwargs)
 
-    async def request(self,method_name:str,*args):
-        response = await WebSocketsClient(self.websocket).request(method_name,*args)
+    async def request(self,method_name:str,**kwargs):
+        response = await WebSocketsClient(self.websocket).request(method_name,**kwargs)
         return response.data
  
 
